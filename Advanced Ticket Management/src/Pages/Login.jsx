@@ -68,7 +68,8 @@ const Login = () => {
         <Heading as="h1" size="xl">
           Login Page
         </Heading>
-
+        <h1>ID : eve.holt@reqres.in</h1>
+        and <h1>Password : cityslicka</h1>
         <Input
           placeholder="Email"
           type="email"
@@ -85,7 +86,6 @@ const Login = () => {
             setPassword(e.target.value);
           }}
         />
-
         <Button onClick={handleClick} colorScheme="teal" variant="outline">
           Login
         </Button>
