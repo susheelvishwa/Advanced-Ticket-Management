@@ -6,6 +6,10 @@ import {
   Textarea,
   Select,
   Box,
+  Heading,
+  useColorModeValue,
+  VStack,
+  HStack,
 } from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -56,7 +60,6 @@ const EditTicket = () => {
         `https://react-final-project-rouge.vercel.app/tickets/${id}`,
         ticket
       );
-      // navigate(`/ticket/view/${id}`);
     } catch (error) {
       console.error("Error updating the ticket:", error);
     }
@@ -66,74 +69,114 @@ const EditTicket = () => {
   if (loading) return <LoadingIndicator />;
   if (error) return <ErrorIndicator />;
 
+  const bgColor = useColorModeValue("gray.50", "gray.800");
+  const formBgColor = useColorModeValue("white", "gray.700");
+  const buttonColor = useColorModeValue("teal.500", "teal.200");
+
   return (
-    <Box p={5}>
-      <form onSubmit={handleSubmit}>
-        <FormControl mb={4}>
-          <FormLabel>Title</FormLabel>
-          <Input
-            name="title"
-            value={ticket.title}
-            onChange={handleChange}
-            required
-          />
-        </FormControl>
-        <FormControl mb={4}>
-          <FormLabel>Status</FormLabel>
-          <Select
-            name="status"
-            value={ticket.status}
-            onChange={handleChange}
-            required
-          >
-            <option value="pending">Pending</option>
-            <option value="progress">Progress</option>
-            <option value="completed">Completed</option>
-          </Select>
-        </FormControl>
-        <FormControl mb={4}>
-          <FormLabel>Priority</FormLabel>
-          <Select
-            name="priority"
-            value={ticket.priority}
-            onChange={handleChange}
-            required
-          >
-            <option value={0}>0</option>
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-            <option value={5}>5</option>
-            <option value={6}>6</option>
-            <option value={7}>7</option>
-            <option value={8}>8</option>
-            <option value={9}>9</option>
-          </Select>
-        </FormControl>
-        <FormControl mb={4}>
-          <FormLabel>Assignee</FormLabel>
-          <Input
-            name="assignee"
-            value={ticket.assignee}
-            onChange={handleChange}
-            required
-          />
-        </FormControl>
-        <FormControl mb={4}>
-          <FormLabel>Description</FormLabel>
-          <Textarea
-            name="description"
-            value={ticket.description}
-            onChange={handleChange}
-            required
-          />
-        </FormControl>
-        <Button type="submit" colorScheme="teal" mr={4}>
-          Save Changes
-        </Button>
-        <Button onClick={() => navigate(`/ticket/view/${id}`)}>Cancel</Button>
-      </form>
+    <Box
+      p={8}
+      bg={bgColor}
+      minH="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Box
+        bg={formBgColor}
+        p={8}
+        borderRadius="md"
+        boxShadow="md"
+        w="full"
+        maxW="md"
+      >
+        <Heading as="h1" size="lg" mb={6} textAlign="center" color="teal.400">
+          Edit Ticket
+        </Heading>
+        <form onSubmit={handleSubmit}>
+          <VStack spacing={4}>
+            <FormControl isRequired>
+              <FormLabel>Title</FormLabel>
+              <Input
+                name="title"
+                value={ticket.title}
+                onChange={handleChange}
+                placeholder="Enter Title"
+                focusBorderColor="teal.400"
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel>Status</FormLabel>
+              <Select
+                name="status"
+                value={ticket.status}
+                onChange={handleChange}
+                placeholder="Select Status"
+                focusBorderColor="teal.400"
+              >
+                <option value="pending">Pending</option>
+                <option value="progress">Progress</option>
+                <option value="completed">Completed</option>
+              </Select>
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel>Priority</FormLabel>
+              <Select
+                name="priority"
+                value={ticket.priority}
+                onChange={handleChange}
+                placeholder="Select Priority"
+                focusBorderColor="teal.400"
+              >
+                {[...Array(10).keys()].map((num) => (
+                  <option key={num} value={num}>
+                    {num}
+                  </option>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel>Assignee</FormLabel>
+              <Input
+                name="assignee"
+                value={ticket.assignee}
+                onChange={handleChange}
+                placeholder="Enter Assignee"
+                focusBorderColor="teal.400"
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel>Description</FormLabel>
+              <Textarea
+                name="description"
+                value={ticket.description}
+                onChange={handleChange}
+                placeholder="Enter Description"
+                focusBorderColor="teal.400"
+              />
+            </FormControl>
+          </VStack>
+          <HStack spacing={4} mt={6} justify="center">
+            <Button
+              type="submit"
+              colorScheme="teal"
+              size="lg"
+              bg={buttonColor}
+              _hover={{ bg: "teal.600" }}
+            >
+              Save Changes
+            </Button>
+            <Button
+              onClick={() => navigate(`/ticket/view/${id}`)}
+              size="lg"
+              variant="outline"
+              colorScheme="teal"
+            >
+              Cancel
+            </Button>
+          </HStack>
+        </form>
+      </Box>
     </Box>
   );
 };

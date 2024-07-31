@@ -5,6 +5,10 @@ import {
   VStack,
   Container,
   useToast,
+  Box,
+  FormControl,
+  FormLabel,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useState, useContext } from "react";
 import axios from "axios";
@@ -16,7 +20,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
-  
   const toast = useToast();
 
   async function handleClick() {
@@ -34,16 +37,15 @@ const Login = () => {
 
       toast({
         title: "Login Successful",
-        description: "welcome to the About page",
+        description: "Welcome to the About page",
         status: "success",
-        duration: 2000, 
+        duration: 2000,
         isClosable: true,
       });
 
       setTimeout(() => {
         navigate(`/about`);
-      }, 1000); 
-      
+      }, 1000);
     } catch (error) {
       console.log(error);
       toast({
@@ -57,39 +59,53 @@ const Login = () => {
   }
 
   return (
-    <Container
-      maxW={"400px"}
-      marginTop={"100px"}
-      border={"1px solid gray"}
-      borderRadius={"15px"}
-      padding={"30px"}
-    >
-      <VStack spacing={6}>
-        <Heading as="h1" size="xl">
-          Login Page
-        </Heading>
-        <h1>ID : eve.holt@reqres.in</h1>
-        and <h1>Password : cityslicka</h1>
-        <Input
-          placeholder="Email"
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <Input
-          placeholder="Password"
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <Button onClick={handleClick} colorScheme="teal" variant="outline">
-          Login
-        </Button>
-      </VStack>
+    <Container maxW="md" centerContent py={12} px={{ base: 4, sm: 6, md: 8 }}>
+      <Box
+        bg="gray.700"
+        p={8}
+        borderRadius="lg"
+        boxShadow="lg"
+        maxW="md"
+        width="full"
+      >
+        <VStack spacing={6}>
+          <Heading as="h1" size="xl" mb={4} textAlign="center" color="white">
+            Login
+          </Heading>
+          <FormControl id="email">
+            <FormLabel color="white">Email</FormLabel>
+            <Input
+              placeholder="Enter your email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              variant="outline"
+              size="lg"
+              focusBorderColor="teal.400"
+            />
+          </FormControl>
+          <FormControl id="password">
+            <FormLabel color="white">Password</FormLabel>
+            <Input
+              placeholder="Enter your password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              variant="outline"
+              size="lg"
+              focusBorderColor="teal.400"
+            />
+          </FormControl>
+          <Button
+            onClick={handleClick}
+            colorScheme="green"
+            size="lg"
+            width="full"
+          >
+            Login
+          </Button>
+        </VStack>
+      </Box>
     </Container>
   );
 };
