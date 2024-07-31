@@ -1,4 +1,4 @@
-import { Button, Box, Text, Flex, Heading, Grid } from "@chakra-ui/react";
+import { Button, Box, Text, Flex, Heading} from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
