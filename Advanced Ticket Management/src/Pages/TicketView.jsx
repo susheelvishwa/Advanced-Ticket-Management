@@ -1,4 +1,4 @@
-import { Button, Box, Text, Flex, Heading} from "@chakra-ui/react";
+import { Button, Box, Text, Flex, Heading } from "@chakra-ui/react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -35,10 +35,10 @@ const ViewTicket = () => {
       await axios.delete(
         `https://react-final-project-rouge.vercel.app/tickets/${id}`
       );
-      navigate("/tickets");
     } catch (error) {
       console.error("Error deleting the ticket:", error);
     }
+    navigate("/tickets");
   };
 
   if (loading) return <LoadingIndicator />;
