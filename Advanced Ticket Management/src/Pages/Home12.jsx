@@ -14,7 +14,6 @@ const Home12 = () => {
       duration: 9000,
       isClosable: true,
     });
-
     navigate(`/Login`);
   }
 

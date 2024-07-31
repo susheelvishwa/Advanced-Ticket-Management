@@ -10,9 +10,23 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export default function TicketCard({ id, title, status, priority }) {
+export default function TicketCard({ id, title, status, priority, onDelete }) {
   const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    try {
+      await axios({
+        method: "delete",
+        url: `https://react-final-project-rouge.vercel.app/tickets/${id}`,
+      });
+      onDelete(id); // Call the onDelete callback with the ticket ID
+      navigate("/tickets");
+    } catch (error) {
+      console.error("Error deleting ticket:", error);
+    }
+  };
 
   return (
     <Card>
@@ -50,17 +64,9 @@ export default function TicketCard({ id, title, status, priority }) {
             <Button
               variant="outline"
               colorScheme="red"
-              onClick={() => navigate(`/ticket/view/${id}`)}
+              onClick={() => navigate(`/ticket/edit/${id}`)}
             >
               Edit Ticket
-            </Button>
-            <Button
-              variant="outline"
-              colorScheme="red"
-              backgroundColor={"red"}
-              onClick={() => navigate(`/ticket/view/${id}`)}
-            >
-              Delete Ticket
             </Button>
           </Box>
         </Stack>

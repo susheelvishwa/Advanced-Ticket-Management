@@ -32,9 +32,7 @@ const links = [
 ];
 
 const Navbar = () => {
-
   const { logout } = useContext(AuthContext)
-
   return (
     <Flex
       justify={"space-around"}
@@ -56,5 +54,6 @@ const Navbar = () => {
     </Flex>
   );
 };
+
 
 export default Navbar;

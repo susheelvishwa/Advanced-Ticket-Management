@@ -33,13 +33,10 @@ const TicketCreate = () => {
         url: `https://react-final-project-rouge.vercel.app/tickets`,
         data: newTicket,
       });
-
-      if (res.status === 201) {
-        navigate(`/tickets`); // Correct usage
-      }
     } catch (error) {
       console.log(error);
     }
+    navigate(`/tickets`);
   }
 
   return (
