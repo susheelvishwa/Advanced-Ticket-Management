@@ -1,33 +1,136 @@
-# Ticket View Page
+# React_Final_Project
+
+># Using the following tools and technologies: React (useState, useContext, useEffect, useRef), Chakra UI, React Router, and Axios, your task is to build a web application with the following features:
+```
+EmailID : eve.holt@reqres.in
+PAssword : cityslicka
+```
+
+using vite (https://vitejs.dev/guide/)
+
+## Backend
+
+## Frontend
+    - Pages
+        - Home
+        - Login
+        - Register
+        - Tasks
+        - About
+        - Contact
+
+    - Components
+        - Navbar
+        - AllRoutes
+
+    - Tools that we will use to build the project
+        - React and React-dom
+        - Chakra ui for Styling 
+        (https://v2.chakra-ui.com/getting-started)
+        - React Router Dom for Routing 
+        (https://www.npmjs.com/package/react-router-dom),
+        (https://reactrouter.com/en/main/router-components/browser-router)
+        - Axios For Fetching Data
+
+
+---------------------------------------------------------------------------
+
+>1. The web application should have multiple pages:
+
+- Home
+- About
+- Contact
+- Tickets
+- Ticket View
+- Ticket Create
+- Ticket Edit
+- Login
+
+---------------------------------------------------------------------------
+
+>2. The Navbar should be visible on all pages and include links to Home, About, Contact, Tickets, and Login. It should also have a LOGOUT button that logs out the user and redirects to the login page. The LOGOUT button should only be visible when the user is logged in.
+
+---------------------------------------------------------------------------
+
+>3. All pages except the Login page should be accessible only to logged-in users. If a user is not logged in, they should be redirected to the login page. This means that only the Login Page is a public route, while all other pages are private routes.
+
+---------------------------------------------------------------------------
+
+>4. Home Page: Create a visually appealing UI similar to this example.
+
+![Home page](./src/assets/image8.png)
+
+---------------------------------------------------------------------------
+
+>5. About Page: Create a visually appealing UI similar to this example.
+![About Page](./src/assets/image9.png)
+
+---------------------------------------------------------------------------
+
+>6. Contact Us Page: Use this page as a reference to build the Contact Us page.
+
+---------------------------------------------------------------------------
+
+>11. Login Page: This page will contain the following elements:
+
+![Login page](./src/assets/image7.png)
+
+    - Input box for email
+    - Input box for password
+
+- **Create a login button.**
+- **The login button will make a POST request to the API endpoint `https://reqres.in/api/login`.**
+- **If the request is successful:**
+  - Redirect to the Home page.
+  - Save the returned token in the AuthContext.
+- **If the request is unsuccessful:**
+  - Display an error message.
+- **Use AuthContext to maintain:**
+  - `isLoggedIn` status.
+  - The authentication token.
+
+
+-------------------------------------------------------------------
+
+># Tickets Page Design Notes
+
+![Tickets page](./src/assets/image10.png)
 
 ## Overview
-The Ticket View Page displays detailed information about a specific ticket. It includes the following details:
-- Title
-- Description
-- Assignee
-- Status
-- Priority
+The Tickets Page is designed to allow users to create, view, and manage tickets. This page will feature a button to create new tickets, a grid layout to display existing tickets, and sorting and filtering options to organize the tickets.
 
-Additionally, the page provides two action buttons:
-- Edit: Redirects the user to the Ticket Edit page.
-- Delete: Deletes the ticket and redirects the user back to the Tickets page.
+## Layout Done
+- **Create Ticket Button**: Positioned at the top right corner, this button redirects users to the Ticket Create page.
+- **Ticket Cards**: Tickets are displayed as cards in a grid layout:
+  - **Large Screens (≥1200px)**: 3 cards per row
+  - **Medium Screens (≥992px)**: 2 cards per row
+  - **Small Screens (<992px)**: 1 card per row
+- **Card Contents**: Each card includes:
+  - Title
+  - Status
+  - Priority
+  - View Button: Redirects to the Ticket View page
 
-## Components and Functionality
+## Sorting and Filtering
+- **Sort by Priority**:
+  - "Low to High"
+  - "High to Low"
+- **Filter by Status**:
+  - "Pending"
+  - "Progress"
+  - "Completed"
 
-### Ticket Details
-The page should display the following ticket details:
-- **Title**: The title of the ticket.
-- **Description**: A detailed description of the ticket.
-- **Assignee**: The name of the person assigned to the ticket.
-- **Status**: The current status of the ticket (Pending, Progress, Completed).
-- **Priority**: The priority level of the ticket (0 to 9).
+## Functionality
+- **Create Ticket Button**: When clicked, redirects to the Ticket Create page.
+![Edit Tickets](./src/assets/image13.png)
 
-### Edit Button
-- **Purpose**: Allows the user to edit the ticket.
-- **Functionality**: When clicked, the Edit button redirects the user to the Ticket Edit page.
-- **Implementation**: Use React Router's `useHistory` hook or a Link component to navigate to the Ticket Edit page.
+- **View Button**: Each card's View button redirects to the Ticket View page for that specific ticket.
+![View Ticket](./src/assets/image12.png)
 
-### Delete Button
-- **Purpose**: Allows the user to delete the ticket.
-- **Functionality**: When clicked, the Delete button sends a DELETE request to the server to remove the ticket. Upon successful deletion, the user is redirected back to the Tickets page.
-- **Implementation**: Use Axios to send a DELETE request to the appropriate API endpoint. Upon success, use React Router's `useHistory` hook to redirect the user to the Tickets page.
+- **Sorting and Filtering**: 
+  - Sort tickets by priority based on user selection (either "Low to High" or "High to Low").
+  - Filter tickets by status based on user selection ("Pending", "Progress", "Completed").
+  - The ticket display should update dynamically based on the selected sort and filter criteria.
+
+
+

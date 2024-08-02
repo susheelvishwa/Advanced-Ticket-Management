@@ -89,7 +89,7 @@ const Tickets = () => {
 
       <HStack spacing={8} my={8}>
         <Select
-          // placeholder="Sort by Priority"
+          
           value={sortOrderValue}
           onChange={(e) => {
             setSortOrderValue(e.target.value);
