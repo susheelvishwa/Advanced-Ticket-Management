@@ -45,10 +45,18 @@ const ViewTicket = () => {
   if (error) return <ErrorIndicator />;
 
   return (
-    <Box p={2} m={120} borderBottom={"2px"}>
+    <Box
+      p={4}
+      m="auto"
+      marginTop="100px"
+      maxWidth="800px"
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+    >
       {ticket ? (
         <>
-          <Heading m={5} color={"gray"} as="h2" size="lg" mb={4}>
+          <Heading m={5} color={"gray.300"} as="h1" size="lg" mb={9}>
             {ticket.title}
           </Heading>
           <Text m={5} mb={2}>
@@ -63,14 +71,19 @@ const ViewTicket = () => {
           <Text m={5} mb={4}>
             <strong>Description:</strong> {ticket.description}
           </Text>
-          <Flex m={5} justifyContent="space-between">
+          <Flex m={5} justifyContent="space-between" flexWrap="wrap">
             <Button
               colorScheme="teal"
+              mb={{ base: 2, md: 0 }}
               onClick={() => navigate(`/ticket/edit/${id}`)}
             >
               Edit Ticket
             </Button>
-            <Button colorScheme="red" onClick={handleDelete}>
+            <Button
+              colorScheme="red"
+              mb={{ base: 2, md: 0 }}
+              onClick={handleDelete}
+            >
               Delete Ticket
             </Button>
             <Button colorScheme="blue" onClick={() => navigate("/tickets")}>

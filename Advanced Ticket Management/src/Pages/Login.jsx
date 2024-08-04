@@ -8,7 +8,6 @@ import {
   Box,
   FormControl,
   FormLabel,
-  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useState, useContext } from "react";
 import axios from "axios";
@@ -72,6 +71,7 @@ const Login = () => {
           <Heading as="h1" size="xl" mb={4} textAlign="center" color="white">
             Login
           </Heading>
+          <h1>eve.holt@reqres.in</h1>
           <FormControl id="email">
             <FormLabel color="white">Email</FormLabel>
             <Input
