@@ -30,9 +30,6 @@ const Login = () => {
           email,
           password,
         },
-        headers: {
-        "x-api-key": "reqres-free-v1"
-      },
       });
 
       login(res?.data?.token);
